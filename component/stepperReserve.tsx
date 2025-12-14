@@ -203,7 +203,7 @@ export default function StepperReserve() {
                             <input
                                 placeholder="09XXXXXXXXX"
                                 value={form.phone}
-                                onChange={e => update({ phone: e.target.value })}
+                                onChange={e => update({ phone: e.target.value.replace(/\D/g, '') })}
                                 className="border rounded p-2 outline-rose-500"
                                 type="tel"
                                 pattern="^(?:\+98|0)?9[0-9]{9}$"

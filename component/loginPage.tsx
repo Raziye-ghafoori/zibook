@@ -99,7 +99,7 @@ export const LoginPage = () => {
                   placeholder="09XXXXXXXXX"
                   value={phoneNumber}
                   pattern='^(?:\+98|0)?9[0-9]{9}$'
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-none transition-all text-center text-2xl tracking-widest "
                 />
               </div>
