@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  background: #ffffff;
+  direction: rtl;
+ font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+/* Invalid input */
+input:invalid {
+  background-color: #ff5845a4;
+}
+
+button{
+  cursor: pointer;
+}
+
