@@ -206,7 +206,7 @@ export default function StepperReserve() {
                                 onChange={e => update({ phone: e.target.value })}
                                 className="border rounded p-2 outline-rose-500"
                                 type="tel"
-                                pattern="^(?:\+98|0)?9[0-9]{9}$|^(?:\+98|0)?9[\u06F0-\u06F9]{9}$"
+                                pattern="^(?:\+98|0)?9[0-9]{9}$"
                             />
                         </div>
                     </div>
