@@ -110,7 +110,7 @@ export default function DashboardPage() {
         setShowServiceModal(false)
         setEditingService(null)
     }
-    function deleteService(id: number) {
+    function deleteService(id: number|null) {
         setServices(prev => prev.filter(s => s.id !== id))
     }
 
@@ -194,11 +194,11 @@ export default function DashboardPage() {
                                 <tbody>
                                     {appointments.map(a => (
                                         <tr key={a.id} className="border-t border-pink-300">
-                                            <td className="py-2">{a.time}</td>
-                                            <td className="py-2">{a.customer}</td>
-                                            <td className="py-2">{a.service}</td>
-                                            <td className="py-2">{getBarberName(a.barberId)}</td>
-                                            <td className="py-2">{a.status}</td>
+                                            <td className="py-2 w-[10%] md:text-[15px] text-[13px]">{a.time}</td>
+                                            <td className="py-2 w-[20%] md:text-[15px] text-[13px]">{a.customer}</td>
+                                            <td className="py-2 w-[15%] md:text-[15px] text-[13px]">{a.service}</td>
+                                            <td className="py-2 w-[20%] md:text-[15px] text-[13px]">{getBarberName(a.barberId)}</td>
+                                            <td className="py-2 w-[15%] md:text-[15px] text-[13px]">{a.status}</td>
                                             <td className="py-2 text-left flex sm:flex-row flex-col sm:justify-end justify-center items-center">
                                                 <button onClick={() => changeAppointmentTime(a.id, prompt('زمان جدید را وارد کنید (مثال: 14:30)', a.time) || a.time)} className="sm:ml-2 w-full sm:w-20 mb-1 px-2 py-1 cursor-pointer rounded bg-blue-400 text-white text-xs">تغییر زمان</button>
                                                 <button onClick={() => cancelAppointment(a.id)} className="w-full sm:w-20 px-2 py-1 rounded bg-red-500 text-white text-xs cursor-pointer">لغو</button>
@@ -236,11 +236,15 @@ export default function DashboardPage() {
                                                         <td className="py-2 pl-5">{s.name}</td>
                                                         <td className="py-2 pl-5">{s.duration}</td>
                                                         <td className="py-2 pl-5">{s.price}</td>
-                                                        <td className="py-2 text-left">
+                                                        <td className="py-2 text-left flex items-center justify-enda">
                                                             <button
                                                                 onClick={()=>openEditService(s)}
                                                                 className="ml-2 px-2 py-1 cursor-pointer rounded bg-blue-400 text-white text-xs"
                                                             >تغییر </button>
+                                                            <button
+                                                                onClick={()=>deleteService(s.id)}
+                                                                className="ml-2 px-2 py-1 cursor-pointer rounded bg-red-500 text-white text-xs"
+                                                            >حذف </button>
                                                         </td>
                                                     </tr>
                                                 ))}

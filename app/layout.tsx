@@ -6,6 +6,9 @@ import { Footer } from "../component/footer";
 export const metadata: Metadata = {
   title: "Zibook | رزرو آنلاین سالن زیبایی ",
   description: "نوبت خود را آنلاین رزرو کنید، بدون انتظار و تماس تلفنی",
+  icons: {
+    icon: "/images/image.svg", 
+  },
 };
 
 export default function RootLayout({

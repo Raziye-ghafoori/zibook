@@ -8,8 +8,8 @@ export default function Home() {
      <section className="h-screen text-center text-white top-0 flex items-center justify-center bg-[url('@/public/images/image11.webp')] bg-cover bg-center">
       <div className="h-full w-full bg-black/30 flex items-center justify-center">
         <div className="w-full flex flex-col items-center justify-center">
-          <h1 className="text-7xl font-bold mb-4">رزرو آنلاین وقت آرایشگاه</h1>
-          <p className="text-lg mb-8 text-pink-200">زیبایی شما در دستان ماست، همین حالا وقت خود را رزرو کنید.</p>
+          <h1 className="md:text-7xl text-4xl text-shadow-lg  font-bold mb-8">رزرو آنلاین وقت آرایشگاه</h1>
+          <p className="md:text-lg text-md  mb-8 text-pink-200 mx-2">زیبایی شما در دستان ماست، همین حالا وقت خود را رزرو کنید.</p>
           <Link href={'/reserve'} className="bg-white text-pink-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition">
             رزرو کنید
           </Link>
