@@ -18,6 +18,9 @@ const TIME_SLOTS = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:30"];
 export default function StepperReserve() {
     const [step, setStep] = useState(0);
     const router = useRouter();
+    const normalizeDigits = (str:string) => str.replace(/[\u06F0-\u06F9]/g, d => 
+  String.fromCharCode(d.charCodeAt(0) - 1728)
+);
 
     const [form, setForm] = useState({
         service: "",
@@ -65,6 +68,8 @@ export default function StepperReserve() {
         if (!canNext()) return;
         setStep(s => Math.min(s + 1, steps.length - 1));
     }
+
+
 
     function handlePrev() {
         setStep(s => Math.max(s - 1, 0));
@@ -196,7 +201,7 @@ export default function StepperReserve() {
                             <input
                                 placeholder="نام و نام خانوادگی"
                                 value={form.name}
-                                onChange={e => update({ name: e.target.value })}
+                                onChange={e => update({ name: normalizeDigits(e.target.value) })}
                                 className="border rounded p-2 outline-rose-500"
                                 pattern="^[\u0600-\u06FF\s]{2,40}$"
                             />
@@ -206,7 +211,7 @@ export default function StepperReserve() {
                                 onChange={e => update({ phone: e.target.value })}
                                 className="border rounded p-2 outline-rose-500"
                                 type="tel"
-                                pattern="^(?:\+98|0)?[0-9\u06F0-\u06F9]{9}$"
+                                pattern="^(?:\+98|0)?9\d{9}$"
                             />
                         </div>
                     </div>
