@@ -98,8 +98,9 @@ export const LoginPage = () => {
                   dir="ltr"
                   placeholder="09XXXXXXXXX"
                   value={phoneNumber}
+                  pattern='^(?:\+98|0)?9[0-9\u06F0-\u06F9]{9}$'
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-center text-2xl tracking-widest "
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-none transition-all text-center text-2xl tracking-widest "
                 />
               </div>
 
@@ -136,7 +137,7 @@ export const LoginPage = () => {
                   maxLength={6}
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-center text-2xl tracking-widest font-bold"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all text-center text-2xl tracking-widest font-bold"
                   disabled={loading}
                   autoFocus
                 />
