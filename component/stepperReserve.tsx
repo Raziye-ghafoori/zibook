@@ -139,7 +139,7 @@ export default function StepperReserve() {
                                     key={s.id}
                                     onClick={() => update({ service: s.id })}
                                     className={
-                                        "p-4 rounded-lg border text-right transition " +
+                                        "p-4 rounded-lg text-[20px] border text-right transition " +
                                         (form.service === s.id
                                             ? "bg-rose-50 border-rose-300"
                                             : "bg-white border-gray-200 hover:shadow")
@@ -177,7 +177,7 @@ export default function StepperReserve() {
                                     key={t}
                                     onClick={() => update({ time: t })}
                                     className={
-                                        "p-2 rounded-md text-sm border border-gray-300 " +
+                                        "p-2 rounded-md text-sm border font-bold border-gray-300 " +
                                         (form.time === t ? "bg-rose-500 text-white border-rose-600" : "bg-white text-gray-600")
                                     }
                                 >
@@ -218,22 +218,22 @@ export default function StepperReserve() {
                         <div className="space-y-2 text-sm">
                             <div>
                                 <strong>خدمت:</strong>{" "}
-                                <span className="text-[15px] mr-2  text-gray-600">{SERVICES.find(s => s.id === form.service)?.name ?? "-"}</span>
+                                <span className="text-[20px] mr-2  text-gray-600">{SERVICES.find(s => s.id === form.service)?.name ?? "-"}</span>
                             </div>
                             <div>
-                                <strong>تاریخ:</strong> <span className="text-[15px] mr-2 text-gray-600">{form.date || "-"}</span> 
+                                <strong>تاریخ:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.date || "-"}</span> 
                             </div>
                             <div>
-                                <strong>ساعت:</strong> <span className="text-[15px] mr-2 text-gray-600">{form.time || "-"}</span> 
+                                <strong>ساعت:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.time || "-"}</span> 
                             </div>
                             <div>
-                                <strong>نام:</strong> <span className="text-[15px] mr-2 text-gray-600 ">{form.name || "-"}</span>
+                                <strong>نام:</strong> <span className="text-[20px] mr-2 text-gray-600 ">{form.name || "-"}</span>
                             </div>
                             <div>
-                                <strong>موبایل:</strong> <span className="text-[15px] mr-2 text-gray-600">{form.phone || "-"}</span> 
+                                <strong>موبایل:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.phone || "-"}</span> 
                             </div>
                         </div>
-                        <p className="text-xs text-gray-500 mt-3">
+                        <p className="text-md text-gray-500 mt-3">
                             **
                             رزرو بعد از  <span className="text-rose-400"> پرداخت</span> قطعی می‌شود
                             **

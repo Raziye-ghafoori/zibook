@@ -1,13 +1,13 @@
 
 export const Footer = () => {
     return (
-        <footer className="bg-pink-200 text-gray-500 ">
+        <footer className="bg-pink-200 text-xl text-gray-500 ">
             <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
 
                 {/* معرفی برند */}
                 <div>
                     <h3 className="text-rose-500 text-lg mb-3">ZiBook</h3>
-                    <p className="text-sm leading-6">
+                    <p className="text-[16px] leading-6">
                         رزرو آنلاین وقت سالن زیبایی، سریع و بدون تماس تلفنی.
                         با چند کلیک، نوبتت رو بگیر و بدون معطلی بیای.
                     </p>
@@ -19,7 +19,7 @@ export const Footer = () => {
                     {/* لینک‌های سریع */}
                     <div className="w-[50%]">
                         <h4 className="text-rose-500  mb-3">دسترسی سریع</h4>
-                        <ul className="space-y-1 text-sm">
+                        <ul className="space-y-1 text-[16px]">
                             <li><a href="/" className="hover:text-rose-400">خانه</a></li>
                             <li><a href="/reserve" className="hover:text-rose-400">رزرو نوبت</a></li>
                             <li><a href="#" className="hover:text-rose-400">درباره ما</a></li>
@@ -30,7 +30,7 @@ export const Footer = () => {
                     {/* ارتباط با ما */}
                     <div className="w-[50%]">
                         <h4 className="text-rose-500  mb-3">ارتباط با ما</h4>
-                        <ul className="space-y-2 text-sm">
+                        <ul className="space-y-2 text-[16px]">
                             <li>📞 0912xxx</li>
                             <li>📍 تهران</li>
                             <li>
