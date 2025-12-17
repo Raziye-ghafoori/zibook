@@ -59,17 +59,17 @@ export default function DashboardPage() {
     // Mock data
     const [appointments, setAppointments] = useState<Appointment[]>([
         { id: 1, time: "09:00", customer: "مینا حسینی", service: "کوتاهی", barberId: 1, status: "رزرو شده" },
-        { id: 2, time: "10:30", customer: "علی رضایی", service: "رنگ", barberId: 2, status: "رزرو شده" },
+        { id: 2, time: "10:30", customer: "زهرا رضایی", service: "رنگ", barberId: 2, status: "رزرو شده" },
         { id: 3, time: "13:00", customer: "سارا مرادی", service: "شینیون", barberId: 1, status: "انجام شده" },
     ])
 
     const [barbers, setBarbers] = useState<Barber[]>([
-        { id: 1, name: "امیر صادقی", phone: "0901xxxxxxx", schedule: "Tue-Fri 09:00-17:00", specialties: ["کوتاهی", "شینیون"] },
+        { id: 1, name: "نفس صادقی", phone: "0901xxxxxxx", schedule: "Tue-Fri 09:00-17:00", specialties: ["کوتاهی", "شینیون"] },
         { id: 2, name: "پگاه کریمی", phone: "0912xxxxxxx", schedule: "Mon-Wed 11:00-19:00", specialties: ["رنگ", "ترمیم"] },
     ])
 
     const [services, setServices] = useState<Service[]>([
-        { id: 1, name: "کوتاهی آقایان", duration: 30, price: 300000 },
+        { id: 1, name: "کوتاهی ", duration: 30, price: 300000 },
         { id: 2, name: "رنگ پایه", duration: 90, price: 1200000 },
         { id: 3, name: "شینیون", duration: 60, price: 700000 },
     ])
