@@ -1,3 +1,4 @@
+import { FaInstagram } from "react-icons/fa6";
 
 export const Footer = () => {
     return (
@@ -33,8 +34,8 @@ export const Footer = () => {
                         <ul className="space-y-2 text-[16px]">
                             <li>📞 0912xxx</li>
                             <li>📍 تهران</li>
-                            <li>
-                                📸
+                            <li className="flex items-center ">
+                                <FaInstagram className="text-rose-500 text-2xl"/>
                                 <a
                                     href="https://instagram.com"
                                     target="_blank"

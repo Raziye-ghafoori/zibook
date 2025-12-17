@@ -129,6 +129,7 @@ export const LoginPage = () => {
                 <label htmlFor="otp" className="block text-sm font-medium text-gray-700 mb-2 text-right">
                   کد تایید 6 رقمی
                 </label>
+                <p className='text-[12px] mb-2 text-gray-500 text-center'>*در حالت دمو عددی ارسال نمیشود خودتان یک عدد رندونم وارد کنید*</p>
                 <input
                   id="otp"
                   type="text"
