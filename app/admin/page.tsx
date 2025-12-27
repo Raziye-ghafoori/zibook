@@ -1,9 +1,6 @@
 "use client"
 import React, { useState, ReactNode } from "react";
 
-// Simple Next.js (App Router) dashboard page for a barbershop
-// Drop this file into: /app/dashboard/page.jsx
-// Requires Tailwind CSS. This is a single-file example with mock data and local state.
 
 type AppointmentStatus = "رزرو شده" | "انجام شده" | "کنسل شده";
 
@@ -326,7 +323,7 @@ function Modal({ children, onClose, title }: ModalProps) {
     )
 }
 
-function ServiceForm({ initial, onCancel, onSave }: ServiceFormProps) {
+function ServiceForm({ initial, onSave }: ServiceFormProps) {
     const [state, setState] = useState(initial || { id: null, name: '', duration: 30, price: 0 })
     return (
         <div className="space-y-3 text-right">
@@ -349,7 +346,7 @@ function ServiceForm({ initial, onCancel, onSave }: ServiceFormProps) {
     )
 }
 
-function BarberForm({ initial, onCancel, onSave }: BarberFormProps) {
+function BarberForm({ initial, onSave }: BarberFormProps) {
     const [state, setState] = useState(initial || { id: null, name: '', phone: '', schedule: '', specialties: [] })
     const [specText, setSpecText] = useState('')
 

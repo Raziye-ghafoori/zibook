@@ -1,7 +1,7 @@
 "use client"
 
 import Calendar from "@/component/calendar"
-import React, { useState, useMemo  } from "react";
+import React, { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 
 const SERVICES = [
@@ -10,6 +10,12 @@ const SERVICES = [
     { id: "nail", name: "ناخن" },
     { id: "facial", name: "فیشیال" },
 ];
+
+
+const BARBERS = [
+    { id: 1, name: "نفس صادقی", phone: "0901xxxxxxx", schedule: "Tue-Fri 09:00-17:00", specialties: ["کوتاهی", "شینیون"] },
+    { id: 2, name: "پگاه کریمی", phone: "0912xxxxxxx", schedule: "Mon-Wed 11:00-19:00", specialties: ["رنگ", "ترمیم"] },
+]
 
 
 // یک زمان نمونه برای دمو — در عمل از سرور / پایگاه داده بیار
@@ -26,6 +32,7 @@ export default function StepperReserve() {
         name: "",
         number: "",
         phone: "",
+        barbers:""
     });
 
     const steps = [
@@ -70,13 +77,13 @@ export default function StepperReserve() {
         setStep(s => Math.max(s - 1, 0));
     }
 
-          
-    function handleComplete(data:any) {
-    // برای دمو: می‌تونیم داده‌ها را به localStorage ذخیره کنیم و به صفحه success بریم
-    localStorage.setItem("demo_reservation", JSON.stringify(data));
-    router.push("/success")
-    // در نسخه واقعی: اینجا POST به Supabase/Firebase بزن
-  }
+
+    function handleComplete(data: any) {
+        // برای دمو: می‌تونیم داده‌ها را به localStorage ذخیره کنیم و به صفحه success بریم
+        localStorage.setItem("demo_reservation", JSON.stringify(data));
+        router.push("/success")
+        // در نسخه واقعی: اینجا POST به Supabase/Firebase بزن
+    }
 
 
     function handleSubmit() {
@@ -92,9 +99,9 @@ export default function StepperReserve() {
                     const isCompleted = i < step;
                     const isActive = i === step;
                     return (
-                        <div key={s.id} className={"flex mr-2 border-b-2  pb-2 justify-between "+(isCompleted || isActive
-                                            ? "border-rose-500 "
-                                            : "border-gray-200")}>
+                        <div key={s.id} className={"flex mr-2 border-b-2  pb-2 justify-between " + (isCompleted || isActive
+                            ? "border-rose-500 "
+                            : "border-gray-200")}>
                             <div className="flex items-center justify-between gap-3">
                                 <div
                                     aria-current={i === step ? "step" : undefined}
@@ -127,36 +134,36 @@ export default function StepperReserve() {
                 })}
             </div>
 
-         <section className="w-[70%]">
-               {/* Step content */}
-            <div className="min-h-[220px] m-5">
-                {step === 0 && (
-                    <div>
-                        <h3 className="text-lg font-medium mb-3">کدام خدمت را می‌خواهید؟</h3>
-                        <div className="grid md:grid-cols-2 md:gap-3  gap-2">
-                            {SERVICES.map(s => (
-                                <button
-                                    key={s.id}
-                                    onClick={() => update({ service: s.id })}
-                                    className={
-                                        "p-4 rounded-lg text-[20px] border text-right transition " +
-                                        (form.service === s.id
-                                            ? "bg-rose-50 border-rose-300"
-                                            : "bg-white border-gray-200 hover:shadow")
-                                    }
-                                >
-                                    <div className="font-medium">{s.name}</div>
-                                </button>
-                            ))}
+            <section className="w-[70%]">
+                {/* Step content */}
+                <div className="min-h-[220px] m-5">
+                    {step === 0 && (
+                        <div>
+                            <h3 className="text-lg font-medium mb-3">کدام خدمت را می‌خواهید؟</h3>
+                            <div className="grid md:grid-cols-2 md:gap-3  gap-2">
+                                {SERVICES.map(s => (
+                                    <button
+                                        key={s.id}
+                                        onClick={() => update({ service: s.id })}
+                                        className={
+                                            "p-4 rounded-lg text-[20px] border text-right transition " +
+                                            (form.service === s.id
+                                                ? "bg-rose-50 border-rose-300"
+                                                : "bg-white border-gray-200 hover:shadow")
+                                        }
+                                    >
+                                        <div className="font-medium">{s.name}</div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {step === 1 && (
-                    <div className="flex flex-col items-center">
-                        <h3 className="text-lg flex  font-medium mb-3">یک تاریخ انتخاب کنید</h3>
-                        <Calendar onSelect={(d) => update({ date: d })} />
-                        {/* <input
+                    {step === 1 && (
+                        <div className="flex flex-col items-center">
+                            <h3 className="text-lg flex  font-medium mb-3">یک تاریخ انتخاب کنید</h3>
+                            <Calendar onSelect={(d) => update({ date: d })} />
+                            {/* <input
                             type="date"
                             className="border rounded p-2"
                             value={form.date}
@@ -165,124 +172,142 @@ export default function StepperReserve() {
                         <p className="text-xs text-gray-500 mt-2">
                             (در دمو محدود به انتخاب تاریخ است — در نسخه واقعی تاریخ‌های پر شده را از سرور بگیر)
                         </p> */}
-                    </div>
-                )}
+                        </div>
+                    )}
 
-                {step === 2 && (
-                    <div>
-                        <h3 className="text-lg font-medium mb-3">ساعت مناسب را انتخاب کنید</h3>
-                        <div className="grid grid-cols-3 gap-2">
-                            {availableTimes.map(t => (
-                                <button
-                                    key={t}
-                                    onClick={() => update({ time: t })}
+                    {step === 2 && (
+                        <div>
+                            <h3 className="text-lg font-medium mb-3">آرایشگر خود را انتخاب کنید</h3>
+                            <div className="grid grid-cols-3 gap-2">
+                                {BARBERS.map(barbers => (
+                                    <button 
+                                    key={barbers.name}
+                                    onClick={()=>update({barbers:barbers.name})}
                                     className={
-                                        "p-2 rounded-md text-sm border font-bold border-gray-300 " +
-                                        (form.time === t ? "bg-rose-500 text-white border-rose-600" : "bg-white text-gray-600")
-                                    }
-                                >
-                                    {t}
-                                </button>
-                            ))}
+                                            "p-2 rounded-md text-sm border font-bold border-gray-300 " 
+                                            +
+                                            (form.barbers===barbers.name ?"bg-rose-500 text-white border-rose-600" : "bg-white text-gray-600")
+                                        }>
+                                        {barbers.name}
+                                    </button>
+                                ))}
+                            </div>
+                            <h3 className="text-lg font-medium mb-3">ساعت مناسب را انتخاب کنید</h3>
+                            <div className="grid grid-cols-3 gap-2">
+                                {availableTimes.map(t => (
+                                    <button
+                                        key={t}
+                                        onClick={() => update({ time: t })}
+                                        className={
+                                            "p-2 rounded-md text-sm border font-bold border-gray-300 " +
+                                            (form.time === t ? "bg-rose-500 text-white border-rose-600" : "bg-white text-gray-600")
+                                        }
+                                    >
+                                        {t}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {step === 3 && (
-                    <div>
-                        <h3 className="text-lg font-medium mb-3">اطلاعات مشتری</h3>
-                        <div className="grid grid-cols-1 gap-3">
-                            
-                            <input
-                                placeholder="نام و نام خانوادگی"
-                                value={form.name}
-                                onChange={e => update({ name: e.target.value })}
-                                className="border rounded p-2 outline-rose-500"
-                                pattern="^[\u0600-\u06FF\s]{2,40}$"
-                            />
-                            <input
-                                placeholder="09XXXXXXXXX"
-                                value={form.phone}
-                                onChange={e => update({ phone: e.target.value.replace(/\D/g, '') })}
-                                className="border rounded p-2 outline-rose-500"
-                                type="tel"
-                                pattern="^(?:\+98|0)?9[0-9]{9}$"
-                            />
-                        </div>
-                    </div>
-                )}
+                    {step === 3 && (
+                        <div>
+                            <h3 className="text-lg font-medium mb-3">اطلاعات مشتری</h3>
+                            <div className="grid grid-cols-1 gap-3">
 
-                {step === 4 && (
-                    <div>
-                        <h3 className="text-lg font-medium mb-3">بازبینی نهایی</h3>
-                        <div className="space-y-2 text-sm">
-                            <div>
-                                <strong>خدمت:</strong>{" "}
-                                <span className="text-[20px] mr-2  text-gray-600">{SERVICES.find(s => s.id === form.service)?.name ?? "-"}</span>
-                            </div>
-                            <div>
-                                <strong>تاریخ:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.date || "-"}</span> 
-                            </div>
-                            <div>
-                                <strong>ساعت:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.time || "-"}</span> 
-                            </div>
-                            <div>
-                                <strong>نام:</strong> <span className="text-[20px] mr-2 text-gray-600 ">{form.name || "-"}</span>
-                            </div>
-                            <div>
-                                <strong>موبایل:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.phone || "-"}</span> 
+                                <input
+                                    placeholder="نام و نام خانوادگی"
+                                    value={form.name}
+                                    onChange={e => update({ name: e.target.value })}
+                                    className="border rounded p-2 outline-rose-500"
+                                    pattern="^[\u0600-\u06FF\s]{2,40}$"
+                                />
+                                <input
+                                    placeholder="09XXXXXXXXX"
+                                    value={form.phone}
+                                    onChange={e => update({ phone: e.target.value.replace(/\D/g, '') })}
+                                    className="border rounded p-2 outline-rose-500"
+                                    type="tel"
+                                    pattern="^(?:\+98|0)?9[0-9]{9}$"
+                                />
                             </div>
                         </div>
-                        <p className="text-md text-gray-500 mt-3">
-                            **
-                            رزرو بعد از  <span className="text-rose-400"> پرداخت</span> قطعی می‌شود
-                            **
-                        </p>
-                        {/* <p className="text-xs text-gray-500 mt-3">
+                    )}
+
+                    {step === 4 && (
+                        <div>
+                            <h3 className="text-lg font-medium mb-3">بازبینی نهایی</h3>
+                            <div className="space-y-2 text-sm">
+                                <div>
+                                    <strong>خدمت:</strong>{" "}
+                                    <span className="text-[20px] mr-2  text-gray-600">{SERVICES.find(s => s.id === form.service)?.name ?? "-"}</span>
+                                </div>
+                                <div>
+                                    <strong>نام آرایشگر: </strong> <span className="text-[20px] mr-2 text-gray-600 ">{form.barbers || "-"}</span>
+                                </div>
+                                <div>
+                                    <strong>تاریخ:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.date || "-"}</span>
+                                </div>
+                                <div>
+                                    <strong>ساعت:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.time || "-"}</span>
+                                </div>
+                                <div>
+                                    <strong>نام:</strong> <span className="text-[20px] mr-2 text-gray-600 ">{form.name || "-"}</span>
+                                </div>
+                                <div>
+                                    <strong>موبایل:</strong> <span className="text-[20px] mr-2 text-gray-600">{form.phone || "-"}</span>
+                                </div>
+                            </div>
+                            <p className="text-md text-gray-500 mt-3">
+                                **
+                                رزرو بعد از  <span className="text-rose-400"> پرداخت</span> قطعی می‌شود
+                                **
+                            </p>
+                            {/* <p className="text-xs text-gray-500 mt-3">
                             در دمو این مرحله فقط اطلاعات را به callback ارسال می‌کند.
                         </p> */}
-                    </div>
-                )}
-            </div>
-
-            {/* Controls */}
-            <div className="flex items-center justify-around mt-6">
-                <div>
-                    <button
-                        onClick={handlePrev}
-                        disabled={step === 0}
-                        className={
-                            "px-4 py-2 rounded-md border " +
-                            (step === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50")
-                        }
-                    >
-                        قبلی
-                    </button>
-                </div>
-
-                <div className="flex items-center gap-3">
-                    {step < steps.length - 1 ? (
-                        <button
-                            onClick={handleNext}
-                            disabled={!canNext()}
-                            className={
-                                "px-5 py-2 rounded-md text-white font-medium " +
-                                (canNext() ? "bg-rose-500 hover:bg-rose-600" : "bg-gray-300 cursor-not-allowed")
-                            }
-                        >
-                            مرحله بعد
-                        </button>
-                    ) : (
-                        <button
-                            onClick={handleSubmit}
-                            className="px-5 py-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white font-medium"
-                        >
-                            ثبت نهایی
-                        </button>
+                        </div>
                     )}
                 </div>
-            </div>
-         </section>
+
+                {/* Controls */}
+                <div className="flex items-center justify-around mt-6">
+                    <div>
+                        <button
+                            onClick={handlePrev}
+                            disabled={step === 0}
+                            className={
+                                "px-4 py-2 rounded-md border " +
+                                (step === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50")
+                            }
+                        >
+                            قبلی
+                        </button>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        {step < steps.length - 1 ? (
+                            <button
+                                onClick={handleNext}
+                                disabled={!canNext()}
+                                className={
+                                    "px-5 py-2 rounded-md text-white font-medium " +
+                                    (canNext() ? "bg-rose-500 hover:bg-rose-600" : "bg-gray-300 cursor-not-allowed")
+                                }
+                            >
+                                مرحله بعد
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handleSubmit}
+                                className="px-5 py-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white font-medium"
+                            >
+                                ثبت نهایی
+                            </button>
+                        )}
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }

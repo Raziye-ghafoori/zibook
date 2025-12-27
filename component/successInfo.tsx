@@ -10,7 +10,7 @@ const SERVICES = [
 ];
 
 export const SuccessInfo = ()=>{
-     const [data, setData] = useState<{service:string, date:string, time:string, name:string, phone:string}>();
+     const [data, setData] = useState<{service:string, date:string, time:string, name:string, phone:string,barbers:string}>();
 
   useEffect(() => {
     const d = localStorage.getItem("demo_reservation");
@@ -25,6 +25,7 @@ export const SuccessInfo = ()=>{
         {data ? (
           <div className="text-sm text-gray-700 mt-3 text-right">
             <div><strong>خدمت:</strong>  <span className="text-[15px] mr-2 text-gray-600 ">{SERVICES.find(s => s.id === data.service)?.name ?? "-"}</span></div>
+            <div><strong>نام آرایشگر:</strong>  <span className="text-[15px] mr-2 text-gray-600 ">{data.barbers}</span></div>
             <div><strong>تاریخ:</strong> <span className="text-[15px] mr-2 text-gray-600">{data.date}</span></div>
             <div><strong>ساعت:</strong> <span className="text-[15px] mr-2 text-gray-600">{data.time}</span></div>
             <div><strong>نام:</strong> <span className="text-[15px] mr-2 text-gray-600 ">{data.name}</span></div>
