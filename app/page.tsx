@@ -56,7 +56,7 @@ export default function Home() {
           <div className="min-w-50 h-full  bg-white p-2 mx-2 flex flex-col items-center justify-center">
             <Image src="/images/implant/image1.jpg" alt="تخفیف کاشنت ناخن" className="rounded-lg " width={200} height={200} />
             <h1>کاشت ناخن</h1>
-            <div className="flex justify-around w-full blur-xs hover:blur-none">
+            <div className="flex justify-around w-full ">
               <span className="font-bold text-[20px]">20000</span>
               <span className="line-through text-gray-500 ">25000</span>
             </div>
