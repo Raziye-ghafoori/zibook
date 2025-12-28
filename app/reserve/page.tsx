@@ -10,8 +10,6 @@ export const metadata = {
 
 export default function Reserve(){
 
-
-
     return(
         <div>
             <section className="mt-15 mb-30">
